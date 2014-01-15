@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (c) 2013, AllSeen Alliance. All rights reserved.
+ * Copyright (c) 2013-2014, AllSeen Alliance. All rights reserved.
  *
  *    Permission to use, copy, modify, and/or distribute this software for any
  *    purpose with or without fee is hereby granted, provided that the above
@@ -219,7 +219,7 @@ class PayloadAdapter {
 					textList.add(new NotificationText(trNt.language, trNt.text));
 				}				
 				
-				// Create the Notification object
+				//Create the Notification object
 				Notification notif = new Notification(msgType, textList);
 				
 				//convert appId received as a byte[] to a string
@@ -245,7 +245,8 @@ class PayloadAdapter {
 					ArgumentKey attrKey = ArgumentKey.getArgumentKeyById(key);
 					
 					if ( attrKey == null ) {
-						throw new NotificationServiceException("Unknown attribute key: '" + key + "' received");
+						logger.warn(TAG, "An unknown attribute key: '" + key + "' received, ignoring the key");
+					    continue;
 					}
 					
 					switch(attrKey) {
